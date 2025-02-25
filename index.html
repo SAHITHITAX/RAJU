@@ -248,6 +248,7 @@ max-width: 100px;
         if (!Array.isArray(data)) {
             throw new Error("Invalid data format received");
         }
+data = data.filter(row => row.assign === "RAJU");
 
 
         let workOptions = [...new Set(data.map(row => row.work).filter(Boolean))];
