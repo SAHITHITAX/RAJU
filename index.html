@@ -9,13 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title >Work Assignment Form</title>
     <style>
-      h2 {
+        h2 {
     background-color: #4CAF50;
     color: white;
     text-align: center; /* Centers the text */
     padding: 10px; /* Optional: adds some space inside the h2 */
     border-radius: 5px; /* Optional: adds rounded corners */
 }
+	  
         table {
                 width: 100%;
                 border-collapse: collapse;
@@ -143,9 +144,13 @@ max-width: 100px;
     </style>
 </head>
 <body>
+	
 
-    <h2>WELCOME TO SAHITHI TAX CONSULTANCY</h2>
+
+
+  <h2>WELCOME TO SAHITHI TAX CONSULTANCY</h2>
   <script>
+	
    function submitForm() {
     const form = document.getElementById("workForm");
     const formData = new FormData(form);
@@ -177,7 +182,6 @@ max-width: 100px;
             throw new Error("Invalid data format received");
         }
 data = data.filter(row => row.assign === "RAJU");
-
 
         let workOptions = [...new Set(data.map(row => row.work).filter(Boolean))];
         let assignOptions = [...new Set(data.map(row => row.assign).filter(Boolean))];
@@ -271,9 +275,10 @@ max-width: 100px;
             <td>${row.status || ""}</td>
             <td class="remark-cell">${row.remark || ""}</td>
             <td>
-                <button onclick="editEntry(${row.id}, '${row.name}', '${row.phone}', '${row.email}', '${row.work}', '${row.assign}', '${row.status}', '${row.remark || ""}')">Edit</button>
-                    </td>
-           
+                <button onclick="editEntry(${row.id}, '${row.assign}', '${row.status}', '${row.remark || ""}')">Edit</button>
+               
+            </td>
+        
         </tr>
     `;
 }).join("")}
@@ -362,11 +367,9 @@ function filterTable() {
 
         window.onload = fetchData;
 
-function editEntry(id, name, phone, email, work, assign, status, remark) {
-    const newName = prompt("Edit Name:", name);
-    const newPhone = prompt("Edit Phone:", phone);
-    const newEmail = prompt("Edit Email:", email);
-    const newWork = prompt("Edit Work:", work);
+function editEntry(id, assign, status, remark) {
+    
+   
     const newAssign = prompt("Edit Assign To:", assign);
     const newStatus = prompt("Edit Status:", status);
     const newRemark = prompt("Edit Remark:", remark);
@@ -376,10 +379,7 @@ function editEntry(id, name, phone, email, work, assign, status, remark) {
         body: new URLSearchParams({
             method: "PUT",
             id: id,
-            name: newName,
-            phone: newPhone,
-            email: newEmail,
-            work: newWork,
+        
             assign: newAssign,
             status: newStatus,
             remark: newRemark
